@@ -177,7 +177,7 @@ public class ShakeShackBurgerApplication {
 
         // 주문 대기 목록에 넣기
         menuContext.addToWaiting(menuContext.getCart());
-        System.out.println(menuContext.printWaiting());
+        menuContext.printWaiting();
 
 
         resetCartAndDisplayMainMenu();

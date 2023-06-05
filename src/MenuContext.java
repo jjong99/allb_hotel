@@ -4,7 +4,7 @@ class MenuContext {
     private Map<String, List<Menu>> menus;
     private Map<String, List<Item>> menuItems;
     private List<Item> cart;
-    private Map<Integer, List<Item>> waiting;
+    private Map<Integer, List<Order>> waiting;
     private double totalPrice;
     private int orderNumber;
 
@@ -74,23 +74,32 @@ class MenuContext {
 
 
     // 주문 대기 목록 가져오기
-    public List<Item> getWaiting(int key) {
+    public List<Order> getWaiting(int key) {
         return waiting.get(key);
     }
 
     // 주문 대기 목록 출력
-    public String printWaiting() {
-        Set set = waiting.entrySet();
-        Iterator it = set.iterator();
-        String orderList = "";
-        while (it.hasNext()) {
-            Map.Entry e = (Map.Entry) it.next();
-            orderList = "[ 대기 주문 목록 ]\n";
-            orderList += "\n1. 대기번호 : " + e.getKey();
-            orderList += "\n2. 주문 상품 목록" + e.getValue().toString();
+    public void printWaiting() {
+//        Set set = waiting.entrySet();
+//        Iterator it = set.iterator();
+//        String orderList = "";
+//        while (it.hasNext()) {
+//            Map.Entry e = (Map.Entry) it.next();
+//            orderList = "[ 대기 주문 목록 ]\n";
+//            orderList += "\n1. 대기번호 : " + e.getKey();
+//            orderList += "\n2. 주문 상품 목록" + e.getValue().;
+//
+//        }
 
-        }
-        return orderList;
+        waiting.forEach((key, values) -> {
+            String orderList = "1. 주문 번호 : " +orderNumber+ "\n2. 주문 상품 목록 : ";
+            for(Order a : values){
+                orderList += a.name + ", ";
+            }
+            System.out.println(orderList);
+            System.out.println(values.get(0).toString());
+        });
+
     }
 
     public void addToCart(Item menuItem) {
@@ -105,7 +114,11 @@ class MenuContext {
     }
 
     public void addToWaiting(List<Item> cart){
-        waiting.put(orderNumber, cart);
+        List<Order> orders = new ArrayList<>();
+        for (int i = 0; i<cart.size(); i++){
+            orders.add(new Order(cart.get(i),totalPrice));
+        }
+        waiting.put(orderNumber, orders);
     }
 
 
