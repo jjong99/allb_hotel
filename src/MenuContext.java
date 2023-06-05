@@ -4,15 +4,17 @@ class MenuContext {
     private Map<String, List<Menu>> menus;
     private Map<String, List<Item>> menuItems;
     private List<Item> cart;
-    private Map<Integer, List<Order>> waiting;
+   // private Map<Integer, List<Order>> waiting;
+    private List<Order> orders;
     private double totalPrice;
     private int orderNumber;
 
     public MenuContext() {
         menus = new HashMap<>();
         menuItems = new HashMap<>();
-        waiting = new HashMap<>();
+        // waiting = new HashMap<>();
         cart = new ArrayList<>();
+        orders = new ArrayList<>();
         totalPrice = 0.0;
         orderNumber = 0;
 
@@ -74,32 +76,13 @@ class MenuContext {
 
 
     // 주문 대기 목록 가져오기
-    public List<Order> getWaiting(int key) {
-        return waiting.get(key);
-    }
+//    public List<Order> getWaiting(int key) {
+//        return waiting.get(key);
+//    }
 
     // 주문 대기 목록 출력
     public void printWaiting() {
-//        Set set = waiting.entrySet();
-//        Iterator it = set.iterator();
-//        String orderList = "";
-//        while (it.hasNext()) {
-//            Map.Entry e = (Map.Entry) it.next();
-//            orderList = "[ 대기 주문 목록 ]\n";
-//            orderList += "\n1. 대기번호 : " + e.getKey();
-//            orderList += "\n2. 주문 상품 목록" + e.getValue().;
-//
-//        }
-
-        waiting.forEach((key, values) -> {
-            String orderList = "1. 주문 번호 : " +orderNumber+ "\n2. 주문 상품 목록 : ";
-            for(Order a : values){
-                orderList += a.name + ", ";
-            }
-            System.out.println(orderList);
-            System.out.println(values.get(0).toString());
-        });
-
+        System.out.println(orders);
     }
 
     public void addToCart(Item menuItem) {
@@ -114,11 +97,12 @@ class MenuContext {
     }
 
     public void addToWaiting(List<Item> cart){
-        List<Order> orders = new ArrayList<>();
-        for (int i = 0; i<cart.size(); i++){
-            orders.add(new Order(cart.get(i),totalPrice));
+        String orderList = "";
+        for(Item a : cart){
+            orderList += a.name + ", ";
         }
-        waiting.put(orderNumber, orders);
+        orders.add(new Order(orderNumber, orderList,totalPrice));
+
     }
 
 
