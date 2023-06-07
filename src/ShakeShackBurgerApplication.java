@@ -281,7 +281,7 @@ public class ShakeShackBurgerApplication {
         newItem.setItemID(itemID);
 
         menuContext.addMenuItem(menuName, newItem);
-        System.out.println("새로 등록된 아이템의 ID: " + newItem.getItemID() +"입니다.");
+        System.out.println("새로 등록된 상품의 ID: " + newItem.getItemID() +"입니다.");
         displayAdminMenu();
     }
 
@@ -292,7 +292,7 @@ public class ShakeShackBurgerApplication {
         if (items != null) {
             return items.size() + 1;  // 다음 ITEM ID는 +1
         }
-        return 1;  // 아이템이 존재 하지 않을때 리턴
+        return 1;  // 상품이 존재 하지 않을때 리턴
     }
         }
 
