@@ -24,6 +24,6 @@ public class Order {
 
     @Override
     public String toString() {
-        return "\n1. 대기번호 : " + this.orderNum + "\n2. 주문 상품 목록 : " + this.orderList +"\n3. 주문 총 가격 : " + this.totalPrice + "W\n5. 주문 시간 : " + this.time;
+        return "\n1. 대기번호 : " + this.orderNum + "\n2. 주문 상품 목록 : " + this.orderList +"\n3. 주문 총 가격 : " + this.totalPrice + "W\n5. 주문 시간 : " + this.time + "\n";
     }
 }

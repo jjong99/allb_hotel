@@ -85,6 +85,10 @@ class MenuContext {
 
     // 주문 대기 목록 출력
     public void printWaiting() {
+        // 최신 주문 내역 세개 출력
+        int SIZE = orders.size();
+
+        System.out.println("대기주문 "+SIZE+"개");
         System.out.println(orders);
     }
 

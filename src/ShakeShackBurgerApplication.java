@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
+import java.util.SortedMap;
 
 public class ShakeShackBurgerApplication {
     private static MenuContext menuContext;
@@ -23,7 +24,7 @@ public class ShakeShackBurgerApplication {
 
         System.out.println();
         System.out.println("[ ADMIN MENU ]");
-        System.out.println("7."+" "+"Add" +"  "+"ㅣ"+" "+ "새로운 상품을 추가합니다");
+        System.out.println("7. 관리자 모드");
         //nextNum으로 해도 번호가 7번으로 안나와서 수동으로 작업함
 
         handleMainMenuInput();
@@ -82,7 +83,7 @@ public class ShakeShackBurgerApplication {
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
         if (input >= 1 && input <= items.size()) {
-            Item selectedItem = items.get(input);
+            Item selectedItem = items.get(input-1);
             displayConfirmation(selectedItem);
         } else {
             System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
@@ -221,8 +222,39 @@ public class ShakeShackBurgerApplication {
             handleCancelConfirmationInput();
         }
     }
+        private  static void displayAdminMenu(){
+            System.out.println("**********************************");
+            System.out.println("SHAKESHACK BURGER 관리자 메뉴입니다.");
+            System.out.println("1. 대기주문 목록");
+            System.out.println("2. 완료주문 목록");
+            System.out.println("3. 상품 생성");
+            System.out.println("4. 상품 삭제");
+            handleAdminMenuInput();
+        }
 
-        private static void displayAdminMenu() {
+        private static void handleAdminMenuInput(){
+            Scanner sc = new Scanner(System.in);
+            int input = sc.nextInt();
+            switch (input){
+                case 1:
+                    menuContext.printWaiting();
+                    break;
+                case 2:
+                    // 완료주문 목록
+                    break;
+                case 3:
+                    displayAddMenu();
+                    break;
+                case 4:
+                    // 상품 삭제 메뉴
+                    break;
+                default:
+                    System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                    break;
+            }
+
+        }
+        private static void displayAddMenu() {
             System.out.println("**********************************");
             System.out.println("SHAKESHACK BURGER 관리자 메뉴입니다.");
             System.out.println("새로운 상품이 추가될 메뉴 카테고리 번호를 선택해주세요.\n");
@@ -233,10 +265,10 @@ public class ShakeShackBurgerApplication {
             System.out.println("4. Beer");
             System.out.println("5. 이전 메뉴로 돌아가기");
 
-            handleAdminMenuInput();
+            handleAddMenuInput();
         }
 
-        private static void handleAdminMenuInput() {
+        private static void handleAddMenuInput() {
             Scanner scanner = new Scanner(System.in);
             int input = scanner.nextInt();
             switch (input) {
@@ -257,7 +289,7 @@ public class ShakeShackBurgerApplication {
                     break;
                 default:
                     System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-                    handleAdminMenuInput();
+                    handleAddMenuInput();
                     break;
             }
         }
