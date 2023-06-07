@@ -21,6 +21,12 @@ public class ShakeShackBurgerApplication {
         List<Menu> orderMenus = menuContext.getMenus("Order");
         printMenu(orderMenus, nextNum);
 
+        System.out.println();
+        System.out.println("[ ADMIN MENU ]");
+        System.out.println("7."+" "+"Add" +"  "+"ㅣ"+" "+ "Add New Item");
+
+
+
         handleMainMenuInput();
     }
 
@@ -53,6 +59,8 @@ public class ShakeShackBurgerApplication {
             case 6:
                 handleCancelMenuInput();
                 break;
+            case 7:
+                displayAdminMenu();
             default:
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
                 handleMainMenuInput();
@@ -214,4 +222,80 @@ public class ShakeShackBurgerApplication {
             handleCancelConfirmationInput();
         }
     }
-}
+
+        private static void displayAdminMenu() {
+            System.out.println("**********************************");
+            System.out.println("SHAKESHACK BURGER 관리자 메뉴입니다.");
+            System.out.println("새로운 상품이 추가될 메뉴 카테고리 번호를 선택해주세요.\n");
+
+            System.out.println("1. Burgers");
+            System.out.println("2. Frozen Custard");
+            System.out.println("3. Drinks");
+            System.out.println("4. Beer");
+            System.out.println("5. 이전 메뉴로 돌아가기");
+
+            handleAdminMenuInput();
+        }
+
+        private static void handleAdminMenuInput() {
+            Scanner scanner = new Scanner(System.in);
+            int input = scanner.nextInt();
+            switch (input) {
+                case 1:
+                    addNewItem("Burgers");
+                    break;
+                case 2:
+                    addNewItem("Frozen Custard");
+                    break;
+                case 3:
+                    addNewItem("Drinks");
+                    break;
+                case 4:
+                    addNewItem("Beer");
+                    break;
+                case 5:
+                    displayMainMenu();
+                    break;
+                default:
+                    System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                    handleAdminMenuInput();
+                    break;
+            }
+        }
+
+    private static void addNewItem(String menuName) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("아이템 이름을 입력하세요: ");
+        String itemName = scanner.nextLine();
+
+        System.out.print("아이템 설명을 입력하세요: ");
+        String description = scanner.nextLine();
+
+        System.out.print("아이템 가격을 입력하세요: ");
+        double price = scanner.nextDouble();
+
+        Item newItem = new Item(itemName, price, description);
+
+
+        int itemID = getItemID(menuName);
+        newItem.setItemID(itemID);
+
+        menuContext.addMenuItem(menuName, newItem);
+        System.out.println("아이템 ID: " + newItem.getItemID());
+        displayAdminMenu();
+    }
+
+
+
+    private static int getItemID(String menuName) {
+        List<Item> items = menuContext.getMenuItems(menuName);
+        if (items != null) {
+            return items.size() + 1;  // 다음 ITEM ID는 +1
+        }
+        return 1;  // 아이템이 존재 하지 않을때 리턴
+    }
+        }
+
+
+

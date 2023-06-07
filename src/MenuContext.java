@@ -8,15 +8,18 @@ class MenuContext {
     private List<Order> orders;
     private double totalPrice;
     private int orderNumber;
+    private int menuCounter;
+    private int itemCounter;
 
     public MenuContext() {
         menus = new HashMap<>();
         menuItems = new HashMap<>();
-        // waiting = new HashMap<>();
         cart = new ArrayList<>();
         orders = new ArrayList<>();
         totalPrice = 0.0;
         orderNumber = 0;
+        menuCounter = 0;
+        itemCounter = 0;
 
         initializeMenuItems();
     }
@@ -116,8 +119,24 @@ class MenuContext {
         return orderNumber;
     }
 
+
+    private int generateItemID() {
+        return ++itemCounter;
+    }
+
     public void resetCart() {
         cart.clear();
         totalPrice = 0.0;
+    }
+    public void addMenuItem(String menuName, Item newItem) {
+        if (menuItems.containsKey(menuName)) {
+            List<Item> items = menuItems.get(menuName);
+            items.add(newItem);
+            menuItems.put(menuName, items);
+            System.out.println("새로운 아이템이 등록되었습니다.");
+
+        } else {
+            System.out.println("잘못된 메뉴 이름입니다. 다시 입력해주세요.");
+        }
     }
 }
