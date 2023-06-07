@@ -15,7 +15,7 @@ public class CompletedOrder extends Order implements Comparable<CompletedOrder> 
     }
     @Override
     public int compareTo(CompletedOrder order) {
-        return this.time.compareTo(order.time);
+        return this.time.compareTo(order.completiontime);
     }
 
 

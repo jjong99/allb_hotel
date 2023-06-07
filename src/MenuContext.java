@@ -4,7 +4,6 @@ class MenuContext {
     private Map<String, List<Menu>> menus;
     private Map<String, List<Item>> menuItems;
     private List<Item> cart;
-   // private Map<Integer, List<Order>> waiting;
     private List<Order> orders;
     private List<CompletedOrder> completedOrders;
     private double totalPrice;
@@ -115,6 +114,7 @@ class MenuContext {
 
     // 최신 주문 내역 3개 출력
     public void printRecentOrder(){
+        System.out.println("[ 최근 완료된 주문 ]");
         completedOrders.sort(Collections.reverseOrder());
         int SIZE = completedOrders.size();
         if(SIZE >= 3){
