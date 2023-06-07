@@ -23,10 +23,8 @@ public class ShakeShackBurgerApplication {
 
         System.out.println();
         System.out.println("[ ADMIN MENU ]");
-        System.out.println("7."+" "+"Add" +"  "+"ㅣ"+" "+ "Add New Item");
-        //next num 해도 7번이 안나와서 수동으로 함 
-
-
+        System.out.println("7."+" "+"Add" +"  "+"ㅣ"+" "+ "새로운 상품을 추가합니다");
+        //nextNum으로 해도 번호가 7번으로 안나와서 수동으로 작업함
 
         handleMainMenuInput();
     }
@@ -267,13 +265,13 @@ public class ShakeShackBurgerApplication {
     private static void addNewItem(String menuName) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("아이템 이름을 입력하세요: ");
+        System.out.print("상품의 이름을 입력하세요: ");
         String itemName = scanner.nextLine();
 
-        System.out.print("아이템 설명을 입력하세요: ");
+        System.out.print("상품에 대한 설명을 입력하세요: ");
         String description = scanner.nextLine();
 
-        System.out.print("아이템 가격을 입력하세요: ");
+        System.out.print("상품의 가격을 입력하세요: ");
         double price = scanner.nextDouble();
 
         Item newItem = new Item(itemName, price, description);
@@ -283,7 +281,7 @@ public class ShakeShackBurgerApplication {
         newItem.setItemID(itemID);
 
         menuContext.addMenuItem(menuName, newItem);
-        System.out.println("아이템 ID: " + newItem.getItemID());
+        System.out.println("새로 등록된 아이템의 ID: " + newItem.getItemID() +"입니다.");
         displayAdminMenu();
     }
 
