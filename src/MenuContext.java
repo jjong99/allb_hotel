@@ -100,7 +100,7 @@ class MenuContext {
     }
 
     // 대기 주문 완료 처리
-    public void CompetedOrder(int idx){
+    public void CompletedOrder(int idx){
         Order co = getOrder(idx);
         orders.remove(idx);
         completedOrders.add(new CompletedOrder(co));

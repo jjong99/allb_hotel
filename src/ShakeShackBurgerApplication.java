@@ -257,7 +257,7 @@ public class ShakeShackBurgerApplication {
                     break;
                 default:
                     System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-                    handleAddMenuInput();
+                    handleAdminMenuInput();
                     break;
             }
 
@@ -268,7 +268,7 @@ public class ShakeShackBurgerApplication {
             System.out.println("완료 처리할 주문번호를 입력해주세요.");
             Scanner sc = new Scanner(System.in);
             int idx = sc.nextInt() - 1;
-            menuContext.CompetedOrder(idx);
+            menuContext.CompletedOrder(idx);
             menuContext.printWaiting();
             displayMainMenu();
         }
