@@ -25,7 +25,6 @@ public class ShakeShackBurgerApplication {
         System.out.println();
         System.out.println("[ ADMIN MENU ]");
         System.out.println("8. 관리자 모드");
-        //nextNum으로 해도 번호가 7번으로 안나와서 수동으로 작업함
 
         handleMainMenuInput();
     }
