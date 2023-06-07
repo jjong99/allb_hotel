@@ -24,6 +24,7 @@ public class ShakeShackBurgerApplication {
         System.out.println();
         System.out.println("[ ADMIN MENU ]");
         System.out.println("7."+" "+"Add" +"  "+"ㅣ"+" "+ "Add New Item");
+        //next num 해도 7번이 안나와서 수동으로 함 
 
 
 
