@@ -93,8 +93,8 @@ class MenuContext {
     public void printWaiting() {
         int SIZE = orders.size();
         System.out.println("\n대기주문 "+SIZE+"개\n");
-        for (Order order : orders){
-            System.out.println(order);
+        for(int i = 0; i<SIZE; i++){
+            System.out.println((i+1) + ". "+orders.get(i));
         }
     }
 
@@ -115,7 +115,7 @@ class MenuContext {
     // 최신 주문 내역 3개 출력
     public void printRecentOrder(){
         System.out.println("[ 최근 완료된 주문 ]");
-        completedOrders.sort(Collections.reverseOrder());
+        Collections.reverse(completedOrders);
         int SIZE = completedOrders.size();
         if(SIZE >= 3){
             for (int i = 0; i <3; i++){
@@ -141,9 +141,12 @@ class MenuContext {
 
     public void addToWaiting(List<Item> cart){
         Scanner sc = new Scanner(System.in);
-        System.out.println("요청 사항을 입력해주세요.");
-        String request = sc.nextLine();
+        System.out.println("요청 사항을 입력해주세요. (20자 이내)");
 
+        String request = sc.nextLine();
+        if (request.length() > 20){
+            request = request.substring(0, 20);
+        }
         String orderList = "";
         for(Item a : cart){
             orderList += a.name + ", ";

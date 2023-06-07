@@ -1,6 +1,4 @@
-import java.util.List;
-import java.util.Scanner;
-import java.util.SortedMap;
+import java.util.*;
 
 public class ShakeShackBurgerApplication {
     private static MenuContext menuContext;
@@ -25,7 +23,6 @@ public class ShakeShackBurgerApplication {
         System.out.println();
         System.out.println("[ ADMIN MENU ]");
         System.out.println("8. 관리자 모드");
-        //nextNum으로 해도 번호가 7번으로 안나와서 수동으로 작업함
 
         handleMainMenuInput();
     }
@@ -254,7 +251,7 @@ public class ShakeShackBurgerApplication {
                     displayAddMenu();
                     break;
                 case 4:
-                    // 상품 삭제 메뉴
+                    displayRemoveMenu();
                     break;
                 default:
                     System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
@@ -346,7 +343,105 @@ public class ShakeShackBurgerApplication {
         }
         return 1;  // 상품이 존재 하지 않을때 리턴
     }
+
+
+
+    // 상품 삭제 기능
+    private static void displayRemoveMenu() {
+        System.out.println("**********************************");
+        System.out.println("SHAKESHACK BURGER 관리자 메뉴입니다.");
+        System.out.println("삭제하고자 하는 상품의 메뉴 카테고리 번호를 선택해주세요.\n");
+        System.out.println("1. Burgers");
+        System.out.println("2. Frozen Custard");
+        System.out.println("3. Drinks");
+        System.out.println("4. Beer");
+        System.out.println("5. 이전 메뉴로 돌아가기");
+        deleteMenuItemInput();
+    }
+    private static void deleteMenuItemInput() {
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        if (input == 1) {
+            List<Item> menuItems = menuContext.getMenuItems("Burgers"); // for문으로 burger 목록 출력
+            for (int i = 0; i < menuItems.size(); i++) {
+                System.out.println(i + 1 + "." + menuItems.get(i));
+            }
+            System.out.println("삭제할 메뉴의 번호를 입력하세요");
+            int menuNum = scanner.nextInt();
+            System.out.println("ID를 입력해주세요.");
+            int IdNum = scanner.nextInt();
+            int a = IdNum;
+            if (menuNum == IdNum) {
+                menuContext.getMenuItems("Burgers").remove(a - 1);
+                displayRemoveMenu();
+            } else {
+                System.out.println("ID를 잘못 입력하였습니다.");
+                displayRemoveMenu();
+            }
+
+        } else if (input == 2) {
+            List<Item> menuItems = menuContext.getMenuItems("Frozen Custard");
+            for (int i = 0; i <menuItems.size(); i++) {
+                System.out.println(i + 1 + "." + menuItems.get(i));
+            }
+            System.out.println("삭제할 메뉴의 번호를 입력하세요");
+            int menuNum = scanner.nextInt();
+            System.out.println("ID를 입력해주세요.");
+            int IdNum = scanner.nextInt();
+            int a = IdNum;
+            if (menuNum == IdNum) {
+                menuContext.getMenuItems("Frozen Custard").remove(a - 1);
+                displayRemoveMenu();
+            } else {
+                System.out.println("ID를 잘못 입력하였습니다.");
+                displayRemoveMenu();
+            }
+
+        } else if (input == 3) {
+            List<Item> menuItems = menuContext.getMenuItems("Drinks");
+            for (int i = 0; i <menuItems.size(); i++) {
+                System.out.println(i + 1 + "." + menuItems.get(i));
+            }
+            System.out.println("삭제할 메뉴의 번호를 입력하세요");
+            int menuNum = scanner.nextInt();
+            System.out.println("ID를 입력해주세요.");
+            int IdNum = scanner.nextInt();
+            int a = IdNum;
+            if (menuNum == IdNum) {
+                menuContext.getMenuItems("Drinks").remove(a - 1);
+                displayRemoveMenu();
+            } else {
+                System.out.println("ID를 잘못 입력하였습니다.");
+                displayRemoveMenu();
+            }
+
+        } else if (input == 4) {
+            List<Item> menuItems = menuContext.getMenuItems("Beer");
+            for (int i = 0; i <menuItems.size(); i++) {
+                System.out.println(i + 1 + "." + menuItems.get(i));
+            }
+            System.out.println("삭제할 메뉴의 번호를 입력하세요");
+            int menuNum = scanner.nextInt();
+            System.out.println("ID를 입력해주세요.");
+            int IdNum = scanner.nextInt();
+            int a = IdNum;
+            if (menuNum == IdNum) {
+                menuContext.getMenuItems("Beer").remove(a - 1);
+                displayRemoveMenu();
+            } else {
+                System.out.println("ID를 잘못 입력하였습니다.");
+                displayRemoveMenu();
+            }
+
+        } else if (input == 5) {
+            displayMainMenu(); // 초기 메뉴로 돌아가기
+
+        }else {
+            System.out.println("잘못된 입력입니다."); // 삭제기능 재실행
+            deleteMenuItemInput();
         }
+    }
+}
 
 
 
