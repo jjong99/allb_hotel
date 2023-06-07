@@ -24,7 +24,7 @@ public class ShakeShackBurgerApplication {
 
         System.out.println();
         System.out.println("[ ADMIN MENU ]");
-        System.out.println("7. 관리자 모드");
+        System.out.println("8. 관리자 모드");
         //nextNum으로 해도 번호가 7번으로 안나와서 수동으로 작업함
 
         handleMainMenuInput();
@@ -60,6 +60,11 @@ public class ShakeShackBurgerApplication {
                 handleCancelMenuInput();
                 break;
             case 7:
+                // 주문 현황
+                menuContext.printRecentOrder();
+                handleMainMenuInput();
+                break;
+            case 8:
                 displayAdminMenu();
             default:
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
@@ -242,7 +247,7 @@ public class ShakeShackBurgerApplication {
                 case 2:
                     // 완료주문 목록
                     menuContext.printCompletedOrder();
-                    displayAdminMenu();
+                    displayMainMenu();
                     break;
                 case 3:
                     displayAddMenu();
@@ -265,7 +270,7 @@ public class ShakeShackBurgerApplication {
             int idx = sc.nextInt() - 1;
             menuContext.CompetedOrder(idx);
             menuContext.printWaiting();
-            displayAdminMenu();
+            displayMainMenu();
         }
 
         private static void displayAddMenu() {

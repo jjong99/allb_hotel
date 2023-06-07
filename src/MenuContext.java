@@ -36,6 +36,7 @@ class MenuContext {
         List<Menu> orderMenus = new ArrayList<>();
         orderMenus.add(new Menu("Order", "장바구니를 확인 후 주문합니다."));
         orderMenus.add(new Menu("Cancel", "진행중인 주문을 취소합니다."));
+        orderMenus.add(new Menu("Recent Order", "최신 주문 내역 세개를 확인합니다."));
 
         menus.put("Main", mainMenus);
         menus.put("Order", orderMenus);
@@ -111,18 +112,22 @@ class MenuContext {
         for(CompletedOrder c : completedOrders){
             System.out.println(c);
         }
-//        // 최신 주문 내역 3개 출력
-//        Collections.sort(completedOrders, Collections.reverseOrder());
-//        int SIZE = completedOrders.size();
-//        if(SIZE >= 3){
-//            for (int i = 0; i <3; i++){
-//                System.out.println(completedOrders.get(i));
-//            }
-//        } else {
-//            for (CompletedOrder o : completedOrders){
-//                System.out.println(o);
-//            }
-//        }
+    }
+
+
+    // 최신 주문 내역 3개 출력
+    public void printRecentOrder(){
+        completedOrders.sort(Collections.reverseOrder());
+        int SIZE = completedOrders.size();
+        if(SIZE >= 3){
+            for (int i = 0; i <3; i++){
+                System.out.println(completedOrders.get(i));
+            }
+        } else {
+            for (CompletedOrder o : completedOrders){
+                System.out.println(o);
+            }
+        }
     }
 
     public void addToCart(Item menuItem) {
