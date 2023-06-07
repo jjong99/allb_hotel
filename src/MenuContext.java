@@ -6,6 +6,7 @@ class MenuContext {
     private List<Item> cart;
    // private Map<Integer, List<Order>> waiting;
     private List<Order> orders;
+    private List<CompletedOrder> completedOrders;
     private double totalPrice;
     private int orderNumber;
     private int menuCounter;
@@ -16,6 +17,7 @@ class MenuContext {
         menuItems = new HashMap<>();
         cart = new ArrayList<>();
         orders = new ArrayList<>();
+        completedOrders = new ArrayList<>();
         totalPrice = 0.0;
         orderNumber = 0;
         menuCounter = 0;
@@ -77,19 +79,50 @@ class MenuContext {
         return this.cart;
     }
 
+    public Order getOrder(int idx){
+        return orders.get(idx);
+    }
 
-    // 주문 대기 목록 가져오기
-//    public List<Order> getWaiting(int key) {
-//        return waiting.get(key);
-//    }
+    public void deleteOrder(int idx){
+        orders.remove(idx);
+    }
+
+
 
     // 주문 대기 목록 출력
     public void printWaiting() {
-        // 최신 주문 내역 세개 출력
+        // 대기주문 내역 출력
         int SIZE = orders.size();
 
-        System.out.println("대기주문 "+SIZE+"개");
-        System.out.println(orders);
+        System.out.println("\n대기주문 "+SIZE+"개\n");
+        for (Order order : orders){
+            System.out.println(order);
+        }
+    }
+
+    // 대기 주문 완료 처리
+    public void CompetedOrder(int idx){
+        Order co = getOrder(idx);
+        orders.remove(idx);
+        completedOrders.add(new CompletedOrder(co));
+    }
+    //
+    public void printCompletedOrder() {
+        for(CompletedOrder c : completedOrders){
+            System.out.println(c);
+        }
+//        // 최신 주문 내역 3개 출력
+//        Collections.sort(completedOrders, Collections.reverseOrder());
+//        int SIZE = completedOrders.size();
+//        if(SIZE >= 3){
+//            for (int i = 0; i <3; i++){
+//                System.out.println(completedOrders.get(i));
+//            }
+//        } else {
+//            for (CompletedOrder o : completedOrders){
+//                System.out.println(o);
+//            }
+//        }
     }
 
     public void addToCart(Item menuItem) {
@@ -108,6 +141,7 @@ class MenuContext {
         for(Item a : cart){
             orderList += a.name + ", ";
         }
+        orderList = orderList.substring(0, orderList.length() - 2); // 맨 끝 , 제거
         orders.add(new Order(orderNumber, orderList,totalPrice));
 
     }

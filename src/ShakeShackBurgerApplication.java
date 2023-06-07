@@ -184,8 +184,6 @@ public class ShakeShackBurgerApplication {
         System.out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
         // 주문 대기 목록에 넣기
         menuContext.addToWaiting(menuContext.getCart());
-        menuContext.printWaiting();
-
 
         resetCartAndDisplayMainMenu();
     }
@@ -222,6 +220,8 @@ public class ShakeShackBurgerApplication {
             handleCancelConfirmationInput();
         }
     }
+
+    // 관리자 모드
         private  static void displayAdminMenu(){
             System.out.println("**********************************");
             System.out.println("SHAKESHACK BURGER 관리자 메뉴입니다.");
@@ -237,10 +237,12 @@ public class ShakeShackBurgerApplication {
             int input = sc.nextInt();
             switch (input){
                 case 1:
-                    menuContext.printWaiting();
+                    displayWaiting();
                     break;
                 case 2:
                     // 완료주문 목록
+                    menuContext.printCompletedOrder();
+                    displayAdminMenu();
                     break;
                 case 3:
                     displayAddMenu();
@@ -250,10 +252,22 @@ public class ShakeShackBurgerApplication {
                     break;
                 default:
                     System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                    handleAddMenuInput();
                     break;
             }
 
         }
+
+        private static void displayWaiting(){
+            menuContext.printWaiting();
+            System.out.println("완료 처리할 주문번호를 입력해주세요.");
+            Scanner sc = new Scanner(System.in);
+            int idx = sc.nextInt() - 1;
+            menuContext.CompetedOrder(idx);
+            menuContext.printWaiting();
+            displayAdminMenu();
+        }
+
         private static void displayAddMenu() {
             System.out.println("**********************************");
             System.out.println("SHAKESHACK BURGER 관리자 메뉴입니다.");

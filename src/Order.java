@@ -8,6 +8,12 @@ public class Order {
     double totalPrice;
 
     Order(){}
+    Order(int orderNum, String orderList, double totalPrice, String time){
+        this.orderNum = orderNum;
+        this.orderList = orderList;
+        this.totalPrice = totalPrice;
+        this.time = time;
+    }
 
     Order(int orderNum, String orderList, double totalPrice){
         this.orderNum = orderNum;
@@ -24,6 +30,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "\n1. 대기번호 : " + this.orderNum + "\n2. 주문 상품 목록 : " + this.orderList +"\n3. 주문 총 가격 : " + this.totalPrice + "W\n5. 주문 시간 : " + this.time + "\n";
+        return "\n1. 대기번호 : " + this.orderNum + "\n2. 주문 상품 목록 : " + this.orderList +"\n3. 주문 총 가격 : " + this.totalPrice + "W\n5. 주문 일시 : " + this.time + "\n";
     }
+
 }
