@@ -92,9 +92,7 @@ class MenuContext {
 
     // 주문 대기 목록 출력
     public void printWaiting() {
-        // 대기주문 내역 출력
         int SIZE = orders.size();
-
         System.out.println("\n대기주문 "+SIZE+"개\n");
         for (Order order : orders){
             System.out.println(order);
@@ -107,7 +105,7 @@ class MenuContext {
         orders.remove(idx);
         completedOrders.add(new CompletedOrder(co));
     }
-    //
+    // 완료 주문 목록 출력
     public void printCompletedOrder() {
         for(CompletedOrder c : completedOrders){
             System.out.println(c);
@@ -142,12 +140,16 @@ class MenuContext {
     }
 
     public void addToWaiting(List<Item> cart){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("요청 사항을 입력해주세요.");
+        String request = sc.nextLine();
+
         String orderList = "";
         for(Item a : cart){
             orderList += a.name + ", ";
         }
         orderList = orderList.substring(0, orderList.length() - 2); // 맨 끝 , 제거
-        orders.add(new Order(orderNumber, orderList,totalPrice));
+        orders.add(new Order(orderNumber, orderList, totalPrice, request));
 
     }
 

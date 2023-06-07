@@ -185,11 +185,11 @@ public class ShakeShackBurgerApplication {
 
     private static void displayOrderComplete() {
         int orderNumber = menuContext.generateOrderNumber();
+
+        // 대기주문 목록에 넣기
+        menuContext.addToWaiting(menuContext.getCart());
         System.out.println("주문이 완료되었습니다!\n");
         System.out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
-        // 주문 대기 목록에 넣기
-        menuContext.addToWaiting(menuContext.getCart());
-
         resetCartAndDisplayMainMenu();
     }
 
