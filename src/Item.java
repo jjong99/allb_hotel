@@ -1,11 +1,10 @@
 public class Item extends Menu {
 
-    Double price;
-    int menuId;
+    double price;
     int itemID;
 
     Item(){}
-    Item(String name, Double price, String description) {
+    Item(String name, double price, String description) {
         super(name, description);
         this.price = price;
         this.itemID = -1;

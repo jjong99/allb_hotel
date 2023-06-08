@@ -96,12 +96,6 @@ class MenuContext {
         for(int i = 0; i<SIZE; i++){
             System.out.println((i+1) + ". "+orders.get(i));
         }
-        System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
-        try {
-            Thread.sleep(3000); // 3초 대기
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     // 대기주문 완료 처리
@@ -138,6 +132,13 @@ class MenuContext {
             for (CompletedOrder o : completedOrders){
                 System.out.println(o);
             }
+        }
+        printWaiting();
+        System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
+        try {
+            Thread.sleep(3000); // 3초 대기
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
