@@ -59,7 +59,6 @@ public class ShakeShackBurgerApplication {
             case 7:
                 // 주문 현황
                 menuContext.printRecentOrder();
-                menuContext.printWaiting();
                 displayMainMenu();
                 break;
             case 8:
