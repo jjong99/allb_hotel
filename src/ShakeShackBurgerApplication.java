@@ -60,10 +60,11 @@ public class ShakeShackBurgerApplication {
                 // 주문 현황
                 menuContext.printRecentOrder();
                 menuContext.printWaiting();
-                handleMainMenuInput();
+                displayMainMenu();
                 break;
             case 8:
                 displayAdminMenu();
+                break;
             default:
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
                 handleMainMenuInput();
@@ -268,6 +269,12 @@ public class ShakeShackBurgerApplication {
             int idx = sc.nextInt() - 1;
             menuContext.CompletedOrder(idx);
             menuContext.printWaiting();
+            System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
+            try {
+                Thread.sleep(3000); // 3초 대기
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             displayMainMenu();
         }
 

@@ -4,8 +4,8 @@ class MenuContext {
     private Map<String, List<Menu>> menus;
     private Map<String, List<Item>> menuItems;
     private List<Item> cart;
-    private List<Order> orders;
-    private List<CompletedOrder> completedOrders;
+    private List<Order> orders; // 대기 주문 목록
+    private List<CompletedOrder> completedOrders; // 완료 주문 목록
     private double totalPrice;
     private int orderNumber;
     private int menuCounter;
@@ -89,7 +89,7 @@ class MenuContext {
 
 
 
-    // 주문 대기 목록 출력
+    // 대기주문 목록 출력
     public void printWaiting() {
         int SIZE = orders.size();
         System.out.println("\n대기주문 "+SIZE+"개\n");
@@ -98,7 +98,7 @@ class MenuContext {
         }
     }
 
-    // 대기 주문 완료 처리
+    // 대기주문 완료 처리
     public void CompletedOrder(int idx){
         Order co = getOrder(idx);
         orders.remove(idx);
@@ -109,13 +109,19 @@ class MenuContext {
         for(CompletedOrder c : completedOrders){
             System.out.println(c);
         }
+        System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
+        try {
+            Thread.sleep(3000); // 3초 대기
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
     // 최신 주문 내역 3개 출력
     public void printRecentOrder(){
         System.out.println("[ 최근 완료된 주문 ]");
-        Collections.reverse(completedOrders);
+        Collections.reverse(completedOrders); // 최신순 정렬
         int SIZE = completedOrders.size();
         if(SIZE >= 3){
             for (int i = 0; i <3; i++){
@@ -126,6 +132,13 @@ class MenuContext {
                 System.out.println(o);
             }
         }
+        System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
+        try {
+            Thread.sleep(3000); // 3초 대기
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void addToCart(Item menuItem) {
