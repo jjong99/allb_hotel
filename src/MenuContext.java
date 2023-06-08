@@ -96,6 +96,12 @@ class MenuContext {
         for(int i = 0; i<SIZE; i++){
             System.out.println((i+1) + ". "+orders.get(i));
         }
+        System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
+        try {
+            Thread.sleep(3000); // 3초 대기
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     // 대기주문 완료 처리
@@ -121,7 +127,8 @@ class MenuContext {
     // 최신 주문 내역 3개 출력
     public void printRecentOrder(){
         System.out.println("[ 최근 완료된 주문 ]");
-        Collections.reverse(completedOrders); // 최신순 정렬
+        Collections.sort(completedOrders, CompletedOrder::compareTo); // 주문 완료 처리된 순서대로 정렬
+
         int SIZE = completedOrders.size();
         if(SIZE >= 3){
             for (int i = 0; i <3; i++){
@@ -132,13 +139,6 @@ class MenuContext {
                 System.out.println(o);
             }
         }
-        System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
-        try {
-            Thread.sleep(3000); // 3초 대기
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void addToCart(Item menuItem) {

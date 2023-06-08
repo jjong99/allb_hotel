@@ -1,4 +1,4 @@
-public class CompletedOrder extends Order {
+public class CompletedOrder extends Order implements Comparable<CompletedOrder> {
     String completiontime;
 
     CompletedOrder(){
@@ -14,4 +14,8 @@ public class CompletedOrder extends Order {
         return "\n1. 대기번호 : " + this.orderNum + "\n2. 주문 상품 목록 : " + this.orderList +"\n3. 주문 총 가격 : " + this.totalPrice + "W\n4. 요청사항 : " + this.request + "\n5. 주문 일시 : " + this.time + "\n6. 완료 주문 일시 : " +this.completiontime+ "\n";
     }
 
+    @Override
+    public int compareTo(CompletedOrder o) {
+        return this.completiontime.compareTo(o.completiontime) * -1; // 최신순 정렬
+    }
 }
